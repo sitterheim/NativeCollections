@@ -61,7 +61,6 @@ namespace JacksonDunstan.NativeCollections
 				{
 					jobReflectionData = JobsUtility.CreateJobReflectionData(
 						typeof(TJob),
-						JobType.ParallelFor,
 						(ExecuteJobFunction)Execute);
 				}
 				return jobReflectionData;
@@ -166,7 +165,7 @@ namespace JacksonDunstan.NativeCollections
 				UnsafeUtility.AddressOf(ref jobData),
 				ParallelForJobStruct<T>.Initialize(),
 				dependsOn,
-				ScheduleMode.Batched);
+				ScheduleMode.Parallel);
 			return JobsUtility.ScheduleParallelFor(
 				ref scheduleParams,
 				valuesLength,
